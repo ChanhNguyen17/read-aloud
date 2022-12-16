@@ -207,6 +207,7 @@ function closeDoc() {
     activeDoc = null;
     silenceLoop.pause();
   }
+    setTimeout(play, 3000);
 }
 
 function forward() {

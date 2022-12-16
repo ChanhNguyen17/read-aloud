@@ -256,7 +256,7 @@ function insertCSS(file) {
 
 function getActiveTab() {
   return new Promise(function(fulfill) {
-    brapi.tabs.query({active: true, lastFocusedWindow: true}, function(tabs) {
+    brapi.tabs.query({}, function(tabs) {
       fulfill(tabs[0]);
     })
   })

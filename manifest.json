@@ -63,7 +63,7 @@
   },
   "commands": {
     "play": {
-      "suggested_key": {"default": "Alt+P"},
+      "suggested_key": {"default": "Alt+Z"},
       "description": "play/pause"
     },
     "stop": {
@@ -71,11 +71,11 @@
       "description": "stop"
     },
     "forward": {
-      "suggested_key": {"default": "Alt+Period"},
+      "suggested_key": {"default": "Alt+S"},
       "description": "forward"
     },
     "rewind": {
-      "suggested_key": {"default": "Alt+Comma"},
+      "suggested_key": {"default": "Alt+A"},
       "description": "rewind"
     }
   }

@@ -201,7 +201,10 @@ function refreshSize() {
   function getWindowSize(settings) {
     switch (settings.highlightWindowSize || defaults.highlightWindowSize) {
       case 1: return [430, 330];
-      case 2: return [550, 420];
+      case 2:
+        // return [550, 420];
+        // return [785, 470];
+        return ["100%", 705];
       default: return [750, 450];
     }
   }

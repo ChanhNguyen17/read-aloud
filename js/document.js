@@ -230,6 +230,11 @@ function TabSource() {
       })
       .finally(function() {waiting = false})
   }
+  this.haha = function () {
+    if (!peer) return Promise.resolve(null);
+    waiting = true;
+    return peer.invoke("haha")
+  }
   this.close = function() {
     if (peer) peer.disconnect();
     return Promise.resolve();
@@ -334,8 +339,11 @@ function Doc(source, onEnd) {
           return read(texts);
         }
         else if (onEnd) {
-          if (hasText) onEnd();
-          else onEnd(new Error(JSON.stringify({code: "error_no_text"})));
+          source.haha()
+            .then(() => {
+              if (hasText) onEnd();
+              else onEnd(new Error(JSON.stringify({code: "error_no_text"})));
+            })
         }
       })
     function read(texts) {

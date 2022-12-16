@@ -8,7 +8,8 @@ var brapi = (typeof chrome != 'undefined') ? chrome : (typeof browser != 'undefi
     var args = Array.prototype.slice.call(arguments, 1);
     var handlers = {
       getCurrentIndex: getCurrentIndex,
-      getTexts: getTexts
+      getTexts: getTexts,
+      haha: haha
     }
     if (handlers[method]) return handlers[method].apply(handlers, args);
     else console.error("Unknown method", method);
@@ -57,6 +58,10 @@ var brapi = (typeof chrome != 'undefined') ? chrome : (typeof browser != 'undefi
     else return readAloudDoc.getCurrentIndex();
   }
 
+  function haha() {
+    return Promise.resolve(readAloudDoc.haha());
+  }
+
   function getTexts(index, quietly) {
     if (index < 0) {
       if (index == -100) return getSelectedText().split(paragraphSplitter);
@@ -67,7 +72,91 @@ var brapi = (typeof chrome != 'undefined') ? chrome : (typeof browser != 'undefi
         .then(function(texts) {
           if (texts && Array.isArray(texts)) {
             texts = texts.map(removeLinks);
-            if (!quietly) console.log(texts.join("\n\n"));
+            // if (!quietly) console.log(texts.join("\n\n"));
+          }
+            texts.shift();
+            let i;
+            const removed_after_i = texts.findIndex((text) => text.includes("[Đăng ký dịch]"))
+            if(removed_after_i !== -1){
+                texts.length = removed_after_i;
+            }
+
+          for (i = 0; i < texts.length; i++) {
+            texts[i] = texts[i]
+                .replaceAll("＊", "")
+                // .replaceAll("＋", "")
+                .replaceAll("*", "")
+                // .replaceAll("=", "")
+                .replaceAll("“…”", "")
+                .replaceAll("“….”", "")
+                .replaceAll("~", "")
+                .replaceAll("Lv.", "Level ")
+                .replaceAll("ϊếŧ", "iết")
+                .replaceAll("<", "")
+                .replaceAll(">", "")
+                .replaceAll("…", "")
+                .replaceAll("#uk", "uck")
+                .replaceAll("#k", "uck")
+                .replaceAll("#t", "hit")
+                .replaceAll("nevolved-", "nevolved ")
+                .replaceAll("bachngocsach.com", "")
+                .replaceAll("Bachngocsach.com", "")
+                .replaceAll('. . .', "")
+                // .replaceAll("TP", " TP")
+                // .replaceAll("PT", " PT")
+                // .replaceAll(" Lv ", " Level ")
+                .replaceAll("-ssi", " si")
+                .replaceAll("???", "")
+                .replaceAll("○", "")
+                .replaceAll("●", "")
+                .replaceAll("_______________________________________________________________", "")
+                .replaceAll("Translator: VALIANT", "")
+                .replaceAll("<<", "")
+                .replaceAll(">>", "")
+                .replaceAll("_____________________", "")
+                .replaceAll(" LV ", " Level ")
+                .replaceAll("lightno", "")
+                .replaceAll("velpub.c", "")
+                .replaceAll("....", "")
+                .replaceAll("___", "")
+                .replaceAll("---", "")
+                .replaceAll("T.r.u.y.ệtruyenfull.vn", "")
+                .replaceAll("T.r.u.y.e.n.y.y", "")
+                .replaceAll("Bạn đang đọc truyện được lấy tại", "")
+                .replaceAll("chấm cơm", "")
+                .replaceAll("Bạn đang đọc truyện tại", "")
+                .replaceAll("Truyện FULL", "")
+                .replaceAll("www.Truyện FULL", "")
+                .replaceAll("Mark Witt ( Mã Khả Duy Đặc)", "Mark Witt")
+                .replaceAll("Mã Khả Duy Đặc", "Mark Witt")
+                .replaceAll("@#$%^&", "")
+                .replaceAll("TruyệnFULL.vn", "")
+                .replaceAll("www.", "")
+                .replaceAll("Nguồn: this URL", "")
+                .replaceAll("this URL", "")
+
+                .replaceAll("more_novel", "")
+                .replaceAll("New_chapters", "")
+                .replaceAll("current_novel", "")
+                .replaceAll("discover_new novels", "")
+                .replaceAll("novel_reading", "")
+                .replaceAll("better_reading", "")
+                .replaceAll("better_user", "")
+                .replaceAll("latest_episodes", "")
+                .replaceAll("This_content", "")
+                .replaceAll("can_find", "")
+                .replaceAll("this_content", "")
+                .replaceAll("this_chapter", "")
+                .replaceAll("this_content", "")
+                .replaceAll("platform_for", "")
+                .replaceAll("advanced_reading", "")
+                .replaceAll("novel_chapters", "")
+                .replaceAll("published_here", "")
+                .replaceAll("Ô...ô...ô...n...g!", "Ông ông!")
+                .replaceAll("Truyện được dịch bởi: NTm.Group. Nếu bạn yêu thích truyện này có thể ủng hộ tác giả thay lời cảm ơn.", "")
+                .replaceAll("Ủng Hộ Linh Thạch Tại Đây", "")
+                .replaceAll("nhockd255", "")
+            ;
           }
           return texts;
         })

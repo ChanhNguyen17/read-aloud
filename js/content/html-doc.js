@@ -6,6 +6,37 @@ var readAloudDoc = new function() {
     return 0;
   }
 
+  this.haha = function (){
+    // return document.getElementsByClassName("chnav next")[0].click();
+    // return document.getElementById('next_url').click();
+
+    // thichtienhiep
+    // return document.getElementsByClassName("chapter-navigation")[0].children[2].click()
+
+
+    // https://truyenyy.vip/
+    // return document.getElementsByClassName("weui-btn weui-btn_primary")[0].click();
+
+    // https://truyentienhiep.net/
+    // return document.getElementsByClassName("btn btn-lg btn-warning btn-next")[1].click()
+
+    if(location.host.includes("zingaudio.net")) {
+        return document.getElementsByClassName("listaction")[0].children[2].click();
+    } else if(location.host.includes("truyenfull.vn")) {
+        return document.getElementsByClassName("btn-chapter-nav")[2].click();
+    } else if(location.host.includes("truyen.tangthuvien.vn")){
+        return document.getElementsByClassName("bot-next_chap")[0].click();
+    } else if(location.host.includes("dtruyen.com")){
+        return document.getElementsByClassName("chap-nav")[1].click();
+    } else if(location.host.includes("bachngocsach.com") || location.host.includes("truyenbns.com") || location.host.includes("bachngocsach.com.vn")){
+        return document.getElementsByClassName("page-next")[0].click();
+    }
+    else {
+      // www.lightnovelpub.com
+      return document.getElementsByClassName("nextchap")[0].click();
+    }
+  }
+
   this.getTexts = function(index) {
     if (index == 0) return parse();
     else return null;
